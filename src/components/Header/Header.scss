@@ -1,4 +1,8 @@
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
   padding-inline: var(--space-xl);
   padding-block: var(--space-lg);
   border-bottom: 2px solid var(--color-border);
@@ -43,8 +47,12 @@
     color: var(--color-text-secondary);
     text-decoration-line: none;
 
+    &:hover {
+      color: var(--color-text);
+    }
+
     @media (width < 360px) {
-      font-size: 0.875rem;
+      font-size: var(--font-size-sm);
     }
 
     &--active {
