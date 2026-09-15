@@ -1,6 +1,6 @@
 import './Button.scss';
 import { Link } from 'react-router-dom';
-import ArrowRight from '../icons/ArrowRight';
+import { ArrowRight } from 'lucide-react';
 
 type ButtonProps = {
   children: React.ReactNode;
