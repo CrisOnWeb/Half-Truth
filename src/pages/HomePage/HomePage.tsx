@@ -1,9 +1,11 @@
 import './HomePage.scss';
+import { useRef, useEffect } from 'react';
 import { cast } from '../../data/cast';
 import type { Character } from '../../data/types';
 import Eyebrow from '../../components/Eyebrow/Eyebrow';
 import Button from '../../components/Button/Button';
 import StatementPreview from '../../components/StatementPreview/StatementPreview';
+import { initTilt } from '../../utils/tilt';
 
 type FeaturedStatement = {
   character: Character;
@@ -13,6 +15,15 @@ type FeaturedStatement = {
 };
 
 const HomePage = () => {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (cardRef.current) {
+      const removeEvents = initTilt(cardRef.current);
+      return removeEvents;
+    }
+  }, []);
+
   const featuredCharacters = cast.filter((character) =>
     ['c01', 'c02', 'c03', 'c04'].includes(character.id)
   );
@@ -72,7 +83,7 @@ const HomePage = () => {
             </div>
           </div>
 
-          <div className="hero__card">
+          <div className="hero__card tilt" ref={cardRef}>
             <div className="hero__card-header">
               <p className="hero__card-id">Expediente #001</p>
               <p className="hero__card-count">4 declaraciones</p>
