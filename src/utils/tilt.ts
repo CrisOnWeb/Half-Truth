@@ -1,6 +1,5 @@
-export const initTilt = (element: HTMLElement) => {
-  // valor que representa la rotación máxima deseada
-  const maxRotation = 5;
+export const initTilt = (element: HTMLElement, maxRotation: number) => {
+  // maxRotation representa la rotación máxima deseada
 
   // Creamos función para normalizar los valores de entre -1 a 1
   const normalizeCoordinate = (value: number): number => {

@@ -15,7 +15,7 @@ type FeaturedStatement = {
 
 const HomePage = () => {
   // Recuperamos la referencia para asociarla al elemento
-  const cardRef = useTilt();
+  const cardRef = useTilt(5);
 
   const featuredCharacters = cast.filter((character) =>
     ['c01', 'c02', 'c03', 'c04'].includes(character.id)
