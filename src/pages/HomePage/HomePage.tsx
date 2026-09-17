@@ -97,6 +97,10 @@ const HomePage = () => {
         </div>
       </section>
 
+      <section className="gameplay">
+        <h2 className="gameplay__title">¿Cómo se juega?</h2>
+      </section>
+
       <Button to="/cases" variant="secondary">
         Ver todos los casos
       </Button>
