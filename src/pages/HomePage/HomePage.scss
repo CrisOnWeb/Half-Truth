@@ -151,3 +151,72 @@
     }
   }
 }
+
+.gameplay {
+  padding-block: var(--space-section);
+  padding-inline: var(--space-xl);
+  border-bottom: 1px solid var(--color-border);
+
+  &__title {
+    margin-bottom: var(--space-xl);
+    font-size: var(--font-size-xxl);
+  }
+
+  &__cards {
+    display: grid;
+    gap: var(--space-lg);
+    padding: 0;
+    list-style-type: none;
+
+    @media (width > 768px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__card {
+    padding: var(--font-size-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-surface);
+  }
+
+  &__step {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+
+    &-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-sm);
+      color: var(--color-secondary);
+      border: 1px solid
+        color-mix(in oklab, var(--color-secondary) 50%, transparent);
+      border-radius: var(--radius-md);
+      background-color: color-mix(
+        in oklab,
+        var(--color-secondary) 15%,
+        transparent
+      );
+    }
+
+    &-text {
+      font-family: var(--font-mono);
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+  }
+
+  &__heading {
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-md);
+  }
+
+  &__text {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+}

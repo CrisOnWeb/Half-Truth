@@ -6,6 +6,8 @@ import Eyebrow from '../../components/Eyebrow/Eyebrow';
 import Button from '../../components/Button/Button';
 import StatementPreview from '../../components/StatementPreview/StatementPreview';
 
+import { BookOpenCheck, UserRoundSearch, HatGlasses } from 'lucide-react';
+
 type FeaturedStatement = {
   character: Character;
   role: string;
@@ -98,7 +100,53 @@ const HomePage = () => {
       </section>
 
       <section className="gameplay">
-        <h2 className="gameplay__title">¿Cómo se juega?</h2>
+        <div className="gameplay__inner central-column">
+          <h2 className="gameplay__title">¿Cómo se juega?</h2>
+
+          <ol className="gameplay__cards">
+            <li className="gameplay__card">
+              <div className="gameplay__step">
+                <span className="gameplay__step-icon" aria-hidden="true">
+                  <BookOpenCheck size={20} />
+                </span>
+                <p className="gameplay__step-text">paso 1</p>
+              </div>
+              <h3 className="gameplay__heading">Lee las declaraciones</h3>
+              <p className="gameplay__text">
+                Cada sospechoso cuenta su versión pero no siempre toda la
+                verdad.
+              </p>
+            </li>
+
+            <li className="gameplay__card">
+              <div className="gameplay__step">
+                <span className="gameplay__step-icon" aria-hidden="true">
+                  <UserRoundSearch size={20} />
+                </span>
+                <p className="gameplay__step-text">paso 2</p>
+              </div>
+              <h3 className="gameplay__heading">Busca contradicciones</h3>
+              <p className="gameplay__text">
+                Algo no encaja con el resto. Puede estar en los pequeños
+                detalles. Siéntete un/a detective.
+              </p>
+            </li>
+
+            <li className="gameplay__card">
+              <div className="gameplay__step">
+                <span className="gameplay__step-icon" aria-hidden="true">
+                  <HatGlasses size={20} />
+                </span>
+                <p className="gameplay__step-text">paso 3</p>
+              </div>
+              <h3 className="gameplay__heading">Descubre quién miente</h3>
+              <p className="gameplay__text">
+                Señala a quien crees que miente. Descubrirás si tu lógica era
+                correcta y cuál era la verdad.
+              </p>
+            </li>
+          </ol>
+        </div>
       </section>
 
       <Button to="/cases" variant="secondary">
