@@ -1,10 +1,13 @@
 import './HomePage.scss';
 import useTilt from '../../hooks/useTilt';
+import { Link } from 'react-router-dom';
 import { cast } from '../../data/cast';
+import { cases } from '../../data/cases';
 import type { Character } from '../../data/types';
 import Eyebrow from '../../components/Eyebrow/Eyebrow';
 import Button from '../../components/Button/Button';
 import StatementPreview from '../../components/StatementPreview/StatementPreview';
+import CaseCard from '../../components/CaseCard/CaseCard';
 
 import { BookOpenCheck, UserRoundSearch, HatGlasses } from 'lucide-react';
 
@@ -149,9 +152,36 @@ const HomePage = () => {
         </div>
       </section>
 
-      <Button to="/cases" variant="secondary">
-        Ver todos los casos
-      </Button>
+      <section className="open-cases">
+        <div className="open-cases__inner central-column">
+          <div className="open-cases__header">
+            <div className="open-cases__intro">
+              <h2 className="open-cases__title">Casos abiertos</h2>
+              <p className="open-cases__text">
+                Cada caso es independiente: una escena, pistas, una víctima,
+                sospechosos/as y por supuesto un/a culpable que debes
+                desenmascarar.
+              </p>
+            </div>
+            <Link to="/cases" className="open-cases__link">
+              ver todos
+            </Link>
+          </div>
+
+          <ul className="open-cases__list">
+            {cases.slice(0, 3).map((gameCase) => (
+              <li className="open-cases__item" key={gameCase.id}>
+                <CaseCard gameCase={gameCase} headingLevel="h3" />
+              </li>
+            ))}
+          </ul>
+          <div className="open-cases__action">
+            <Button className="open-cases__btn" to="/cases" variant="secondary">
+              Ver todos los casos
+            </Button>
+          </div>
+        </div>
+      </section>
     </>
   );
 };

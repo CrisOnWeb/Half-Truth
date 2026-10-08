@@ -1,3 +1,7 @@
+/* =========================================
+   HERO
+   ========================================= */
+
 .hero {
   padding-block: var(--space-section);
   padding-inline: var(--space-xl);
@@ -152,6 +156,10 @@
   }
 }
 
+/* =========================================
+   CÓMO SE JUEGA
+   ========================================= */
+
 .gameplay {
   padding-block: var(--space-section);
   padding-inline: var(--space-xl);
@@ -218,5 +226,79 @@
   &__text {
     color: var(--color-text-muted);
     font-size: var(--font-size-sm);
+  }
+}
+
+/* =========================================
+   CASOS ABIERTOS
+   ========================================= */
+
+.open-cases {
+  padding-block: var(--space-section);
+  padding-inline: var(--space-xl);
+  border-bottom: 1px solid var(--color-border);
+
+  &__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: var(--space-lg);
+  }
+
+  &__title {
+    margin-bottom: var(--space-sm);
+    font-size: var(--font-size-xxl);
+  }
+
+  &__text {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-md);
+  }
+
+  &__link {
+    display: none;
+    background-color: transparent;
+    border: none;
+    color: var(--color-primary);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-xs);
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    text-decoration-color: color-mix(in oklab, currentColor 40%, transparent);
+    text-decoration-line: underline;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+
+    &:hover {
+      text-decoration-color: currentColor;
+    }
+
+    @media (width > 768px) {
+      display: inline-block;
+    }
+  }
+
+  &__list {
+    display: grid;
+    gap: var(--space-lg);
+    margin-block: var(--space-xxl);
+    list-style-type: none;
+
+    @media (width > 768px) {
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+  }
+
+  &__action {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__btn {
+    width: 100%;
+
+    @media (width > 768px) {
+      width: auto;
+    }
   }
 }
