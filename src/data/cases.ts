@@ -110,7 +110,7 @@ export const cases: Case[] = [
     solution: {
       culprit: 'c27',
       explanation:
-        '\Nora no había acudido a la galería con intención de matar a Nadia. Lo que comenzó como un enfrentamiento por la fotografía terminó en un ataque impulsivo cuando la discusión entre ambas se descontroló.\n\n\
+        'Nora no había acudido a la galería con intención de matar a Nadia. Lo que comenzó como un enfrentamiento por la fotografía terminó en un ataque impulsivo cuando la discusión entre ambas se descontroló.\n\n\
           La fotografía había puesto al descubierto la infidelidad de Nora y había provocado una fuerte discusión con su marido, Enrique. Para Nora, Nadia era responsable de haber destruido la vida que conocía.\n\n\
           Después de salir de la galería tras discutir con Enrique, Nora regresó buscando a Nadia. La vio dirigirse hacia la zona privada y, como conocía la existencia de la puerta trasera, entró por allí para enfrentarse a ella sin que los demás invitados la vieran.\n\n\
           Durante la discusión, Nora perdió el control y acabó con la vida de Nadia.\n\n\
