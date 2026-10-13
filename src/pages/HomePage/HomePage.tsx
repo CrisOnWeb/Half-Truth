@@ -1,4 +1,5 @@
 import './HomePage.scss';
+import { useRef, useEffect, useState } from 'react';
 import useTilt from '../../hooks/useTilt';
 import { Link } from 'react-router-dom';
 import { cast } from '../../data/cast';
@@ -8,7 +9,6 @@ import Eyebrow from '../../components/Eyebrow/Eyebrow';
 import Button from '../../components/Button/Button';
 import StatementPreview from '../../components/StatementPreview/StatementPreview';
 import CaseCard from '../../components/CaseCard/CaseCard';
-
 import { BookOpenCheck, UserRoundSearch, HatGlasses } from 'lucide-react';
 
 type FeaturedStatement = {
@@ -19,8 +19,48 @@ type FeaturedStatement = {
 };
 
 const HomePage = () => {
-  // Recuperamos la referencia para asociarla al elemento
+  const [isGameplayVisible, setIsGameplayVisible] = useState(false);
+
+  // Recuperamos la referencia para asociarla a la tarjeta del hero
   const cardRef = useTilt(5);
+
+  // Referencia a la sección para detectar cuándo entra en el viewport
+  const gameplayRef = useRef<HTMLElement>(null);
+
+  // Detectamos cuándo la sección de gameplay entra en el viewport
+  useEffect(() => {
+    // Evitamos crear el observador si el elemento todavía no existe
+    // o el navegador no admite IntersectionObserver
+    if (!gameplayRef.current || !('IntersectionObserver' in window)) {
+      return;
+    }
+
+    // Creamos un observador que reaccionará a los cambios de visibilidad
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Activamos la animación cuando la sección entra en el área de observación.
+        if (entries[0].isIntersecting) {
+          // Activamos la animación de las tarjetas
+          setIsGameplayVisible(true);
+
+          // Dejamos de observar porque solo necesitamos detectarlo una vez
+          observer.unobserve(entries[0].target);
+        }
+      },
+      // Retrasamos la detección reduciendo el área de observación
+      // por abajo para que las tarjetas estén más cerca de aparecer
+      { rootMargin: '0px 0px -200px 0px' }
+    );
+
+    // Comenzamos a observar la sección de gameplay
+    observer.observe(gameplayRef.current);
+
+    // Limpiamos el observador cuando el componente se desmonta
+    return () => {
+      // Desconectamos el observador
+      observer.disconnect();
+    };
+  }, []);
 
   const featuredCharacters = cast.filter((character) =>
     ['c01', 'c02', 'c03', 'c04'].includes(character.id)
@@ -52,6 +92,9 @@ const HomePage = () => {
       clue: true,
     },
   ];
+
+  // Comprobamos si es compatible con el navegador
+  const supportsIntersectionObserver = 'IntersectionObserver' in window;
 
   return (
     <>
@@ -102,7 +145,10 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="gameplay">
+      <section
+        className={`gameplay ${supportsIntersectionObserver ? 'gameplay--animation-ready' : ''} ${isGameplayVisible ? 'gameplay--visible' : ''}`}
+        ref={gameplayRef}
+      >
         <div className="gameplay__inner central-column">
           <h2 className="gameplay__title">¿Cómo se juega?</h2>
 

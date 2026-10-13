@@ -50,3 +50,21 @@
     transition: transform 0.3s ease-out;
   }
 }
+
+/* =========================================
+   ANIMATIONS UTILITIES
+   ========================================= */
+
+@keyframes slideInFromRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100vw);
+    filter: blur(2px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
