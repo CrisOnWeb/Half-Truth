@@ -1,6 +1,6 @@
 import './HomePage.scss';
-import { useRef, useEffect, useState } from 'react';
 import useTilt from '../../hooks/useTilt';
+import useInView from '../../hooks/useInView';
 import { Link } from 'react-router-dom';
 import { cast } from '../../data/cast';
 import { cases } from '../../data/cases';
@@ -19,48 +19,11 @@ type FeaturedStatement = {
 };
 
 const HomePage = () => {
-  const [isGameplayVisible, setIsGameplayVisible] = useState(false);
-
   // Recuperamos la referencia para asociarla a la tarjeta del hero
   const cardRef = useTilt(5);
 
-  // Referencia a la sección para detectar cuándo entra en el viewport
-  const gameplayRef = useRef<HTMLElement>(null);
-
-  // Detectamos cuándo la sección de gameplay entra en el viewport
-  useEffect(() => {
-    // Evitamos crear el observador si el elemento todavía no existe
-    // o el navegador no admite IntersectionObserver
-    if (!gameplayRef.current || !('IntersectionObserver' in window)) {
-      return;
-    }
-
-    // Creamos un observador que reaccionará a los cambios de visibilidad
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Activamos la animación cuando la sección entra en el área de observación.
-        if (entries[0].isIntersecting) {
-          // Activamos la animación de las tarjetas
-          setIsGameplayVisible(true);
-
-          // Dejamos de observar porque solo necesitamos detectarlo una vez
-          observer.unobserve(entries[0].target);
-        }
-      },
-      // Retrasamos la detección reduciendo el área de observación
-      // por abajo para que las tarjetas estén más cerca de aparecer
-      { rootMargin: '0px 0px -200px 0px' }
-    );
-
-    // Comenzamos a observar la sección de gameplay
-    observer.observe(gameplayRef.current);
-
-    // Limpiamos el observador cuando el componente se desmonta
-    return () => {
-      // Desconectamos el observador
-      observer.disconnect();
-    };
-  }, []);
+  // Obtenemos la referencia de la sección gameplay y el estado de visibilidad
+  const { ref: gameplayRef, isVisible: isGameplayVisible } = useInView();
 
   const featuredCharacters = cast.filter((character) =>
     ['c01', 'c02', 'c03', 'c04'].includes(character.id)
