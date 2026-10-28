@@ -2,6 +2,7 @@ import './CasesPage.scss';
 import { useState } from 'react';
 import { cases } from '../../data/cases';
 import Eyebrow from '../../components/Eyebrow/Eyebrow';
+import CaseCard from '../../components/CaseCard/CaseCard';
 
 const CasesPage = () => {
   const [selectedDifficulty, setSelectedDifficulty] = useState('all');
@@ -81,7 +82,47 @@ const CasesPage = () => {
         </div>
 
         <div className="cases__content">
-          <div className="central-column">{/* Listado de expedientes */}</div>
+          <div className="central-column">
+            <p className="cases__content-counter" role="status">
+              <span aria-hidden="true">[ </span>
+              <span className="cases__content-counter--highlight">
+                {filteredData.length}
+              </span>{' '}
+              <span aria-hidden="true"> / </span>
+              <span className="cases__content-counter--highlight">
+                {cases.length}
+              </span>{' '}
+              expedientes
+              <span aria-hidden="true"> ]</span>
+            </p>
+
+            {filteredData.length === 0 ? (
+              <div className="cases__empty">
+                <h2 className="cases__empty-title">
+                  No se han encontrado expedientes.
+                </h2>
+
+                <p className="cases__empty-description">
+                  Prueba con otra dificultad para encontrar más casos.
+                </p>
+              </div>
+            ) : (
+              <ol className="cases__content-cards">
+                {filteredData.map((gameCase) => (
+                  <li className="cases__content-card" key={gameCase.id}>
+                    <CaseCard gameCase={gameCase} headingLevel="h2" />
+                  </li>
+                ))}
+              </ol>
+            )}
+          </div>
+        </div>
+
+        <div className="cases__announcement u-background u-night-canvas u-dossier-grid">
+          <div className="cases__announcement-inner central-column">
+            <h2 className="cases__announcement-title">Nuevos expedientes</h2>
+            <p className="cases__announcement-text">Próximamente</p>
+          </div>
         </div>
       </section>
     </>

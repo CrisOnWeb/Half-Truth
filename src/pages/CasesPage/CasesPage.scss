@@ -22,9 +22,15 @@
     font-size: var(--font-size-lg);
   }
 
+  /* =========================================
+   FILTERS - FILTRADO DE CASOS
+   ========================================= */
+
   &__filters {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--space-lg);
+    margin-top: var(--space-lg);
 
     &-title {
       color: var(--color-text-muted);
@@ -40,7 +46,6 @@
       gap: var(--space-sm);
       padding-block: var(--space-md);
       padding-inline: var(--space-lg);
-      margin-block: var(--space-lg);
       background-color: transparent;
       border: 1px solid var(--color-border-strong);
       border-radius: var(--radius-round);
@@ -79,6 +84,108 @@
       border-radius: 50%;
       background-color: var(--color-border-strong);
       flex-shrink: 0;
+    }
+  }
+
+  /* =========================================
+   CONTENT - LISTADO DE CASOS
+   ========================================= */
+
+  &__content {
+    padding-block: var(--space-section);
+    padding-inline: var(--space-xl);
+    border-bottom: 1px solid var(--color-border);
+
+    &-counter {
+      padding-bottom: var(--space-sm);
+      font-family: var(--font-mono);
+      font-size: var(--font-size-sm);
+      text-align: end;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+
+      &--highlight {
+        color: var(--color-primary);
+      }
+    }
+
+    &-cards {
+      display: grid;
+      gap: var(--space-lg);
+      list-style-type: none;
+      padding-block: var(--space-xxl);
+
+      @media (width > 768px) {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      }
+    }
+  }
+
+  /* =========================================
+   EMPTY - LISTADO VACÍO
+   ========================================= */
+
+  &__empty {
+    padding-block: var(--space-xxxl);
+    padding-inline: var(--space-xl);
+    text-align: center;
+
+    @media (width > 768px) {
+      padding-block: var(--space-section);
+    }
+
+    &-title {
+      margin-bottom: var(--space-md);
+      font-family: var(--font-display);
+      font-size: var(--font-size-lg);
+      font-weight: 600;
+
+      &::before {
+        content: '';
+        display: block;
+        width: 5rem;
+        height: 2px;
+        margin: 0 auto var(--space-xl);
+        background-color: var(--color-primary);
+      }
+    }
+
+    &-description {
+      color: var(--color-text-muted);
+      font-size: var(--font-size-md);
+      line-height: 1.6;
+    }
+  }
+
+  /* =========================================
+   PRÓXIMAMENTE
+   ========================================= */
+
+  &__announcement {
+    padding-block: var(--space-section);
+    padding-inline: var(--space-xl);
+
+    &-inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &-title {
+      margin-bottom: var(--space-md);
+      color: var(--color-primary);
+      font-family: var(--font-mono);
+      font-size: var(--font-size-lg);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    &-text {
+      color: var(--color-text-muted);
+      font-family: var(--font-display);
+      font-size: var(--font-size-xl);
     }
   }
 }
